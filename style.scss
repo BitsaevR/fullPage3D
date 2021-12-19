@@ -1,0 +1,357 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    height: 0.3rem;
+
+    .menu {
+        max-width: 72rem;
+        width: 100%;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        color: white;
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 4rem;
+
+            span {
+                font-weight: 300;
+            }
+        }
+
+        .burger {
+            height: 4rem;
+            width: 3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .bar {
+                width: 1.9rem;
+                height: 1.5px;
+                background-color: #fff;
+                transition: .3s;
+                position: relative;
+
+                &::after,
+                &::before {
+                    content: "";
+                    position: absolute;
+                    width: inherit;
+                    height: inherit;
+                    background-color: #eee;
+                    transition: .5s;
+
+                }
+
+                &::after {
+
+                    transform: translateY(9px);
+
+                }
+
+                &::before {
+                    transform: translateY(-9px);
+
+                }
+            }
+        }
+    }
+}
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    background: tomato;
+    overflow: hidden;
+    background-image: linear-gradient(135deg, #485461 0%, #28313b 74%);
+    transform-style: preserve-3d;
+
+    .main {
+        position: relative;
+        width: 100%;
+        left: 0;
+        z-index: 5;
+        overflow: hidden;
+        transform-origin: left;
+        transform-style: preserve-3d;
+        transition: 0.5s;
+
+        header {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+
+            &.header__one {
+                background: url('Img/ibg1.jpg') no-repeat center;
+                background-size: cover;
+            }
+
+            &.header__two {
+                background: url('Img/ibg2.jpg') no-repeat top;
+                background-size: cover;
+            }
+
+            &.header__third {
+                background: url('Img/ibg3.jpg') no-repeat top;
+                background-size: cover;
+            }
+
+            &.header__four {
+                background: url('Img/ibg4.jpg') no-repeat center;
+                background-size: cover;
+            }
+
+            .header {
+                width: 100%;
+                position: absolute;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-color: rgba(43, 51, 59, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &__item {
+                    max-width: 35rem;
+                    text-align: center;
+                    color: white;
+                    padding: 0 2rem;
+
+                    .title {
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 2.7rem;
+                        margin: 0 0 20px 0;
+                    }
+
+                    .texte {
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 18px;
+                        margin-bottom: 20px;
+                    }
+
+                    .btn {
+                        font-family: 'Montserrat', sans-serif;
+                        font-weight: 600;
+
+                        margin-top: 1rem;
+                        padding: 15px 30px;
+                        background-color: #1179e7;
+                        border: none;
+                        text-decoration: none;
+                        border-radius: 25px;
+                        color: white;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                    }
+
+                    .btn_ban {
+                        font-family: 'Montserrat', sans-serif;
+                        font-weight: 600;
+                        margin-top: 1rem;
+                        padding: 15px 30px;
+                        background-color: #e71111;
+                        border: none;
+                        text-decoration: none;
+                        border-radius: 25px;
+                        color: white;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+        }
+    }
+
+    //LINK
+    .links {
+        position: absolute;
+        width: 30%;
+        top: 0;
+        right: 0;
+
+        height: 100vh;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .link {
+            font-family: 'Roboto', sans-serif;
+            text-decoration: none;
+            color: #eee;
+            padding: 0.7rem 0;
+            font-size: 1rem;
+            display: inline-block;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: .3s;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: hide .5s forwards ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+    }
+
+}
+
+//shadow
+.shadow {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: .5s;
+    background: white;
+
+    &.one {
+        z-index: -1;
+        opacity: .15;
+    }
+
+    &.two {
+        z-index: -2;
+        opacity: .1;
+    }
+}
+
+
+
+// ANIMATION
+
+
+
+.container.active {
+    .bar {
+        transform: rotate(360deg);
+        background-color: transparent;
+
+        &::before {
+            transform: translateY(0) rotate(45deg);
+        }
+
+        &::after {
+            transform: translateY(0) rotate(-45deg);
+        }
+    }
+
+    .main {
+        animation: main-animation 1s else;
+        cursor: pointer;
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+
+        &:hover {
+            transform: perspective(1300px) rotateY(20deg) translateZ(340px) scale(0.5);
+
+            +.shadow.one {
+                transform: perspective(1300px) rotateY(20deg) translateZ(230px) scale(0.5);
+
+            }
+        }
+    }
+
+    .shadow.one {
+        animation: shadow-one .6s ease-out;
+        transform: perspective(1300px) rotateY(20deg) translateZ(215px) scale(0.5);
+    }
+
+    .shadow.two {
+        animation: shadow-two .6s ease-out;
+        transform: perspective(1300px) rotateY(20deg) translateZ(120px) scale(0.5);
+    }
+
+    .links a {
+        animation: appear 0.5s forwards ease var(--i);
+    }
+}
+
+//key-frame
+
+@keyframes main-animation {
+    from {
+        transform: translate(0);
+    }
+
+    to {
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+    }
+}
+
+@keyframes shadow-one {
+    0% {
+        translate: (0);
+    }
+
+    5% {
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+    }
+
+    100% {
+        transform: perspective(1300px) rotateY(20deg) translateZ(215px) scale(0.5);
+    }
+}
+
+@keyframes shadow-two {
+    0% {
+        translate: (0);
+    }
+
+    20% {
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+    }
+
+    100% {
+        transform: perspective(1300px) rotateY(20deg) translateZ(120px) scale(0.5);
+    }
+}
+
+@keyframes hide {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
